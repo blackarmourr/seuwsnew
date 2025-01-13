@@ -5,4 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: '/seuws/', // Base URL, should match your GitHub Pages repository name
   plugins: [react()],
+  server: {
+    host: '0.0.0.0', // Listen on all network interfaces
+    port: 5173, // Default port for Vite
+  },
 });

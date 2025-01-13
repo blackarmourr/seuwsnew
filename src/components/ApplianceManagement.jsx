@@ -3,7 +3,7 @@ import "./ApplianceManagement.css"; // Make sure this is imported
 
 const ApplianceManagement = () => {
   const [appliances, setAppliances] = useState([]);
-  const [newAppliance, setNewAppliance] = useState({ name: "", power: "", usage: "" });
+  const [newAppliance, setNewAppliance] = useState({ name: "", power: "", usage: "", numberOfDevices: 1 });
   const [editingIndex, setEditingIndex] = useState(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const ApplianceManagement = () => {
     if (newAppliance.name && newAppliance.power && newAppliance.usage) {
       const updatedAppliances = [...appliances, newAppliance];
       setAppliances(updatedAppliances);
-      setNewAppliance({ name: "", power: "", usage: "" });
+      setNewAppliance({ name: "", power: "", usage: "", numberOfDevices: 1 });
     }
   };
 
@@ -48,7 +48,7 @@ const ApplianceManagement = () => {
       const updatedAppliances = [...appliances];
       updatedAppliances[editingIndex] = newAppliance;
       setAppliances(updatedAppliances);
-      setNewAppliance({ name: "", power: "", usage: "" });
+      setNewAppliance({ name: "", power: "", usage: "", numberOfDevices: 1 });
       setEditingIndex(null);
     }
   };
@@ -60,7 +60,7 @@ const ApplianceManagement = () => {
 
   const calculateTotalConsumption = (timeframe) => {
     return appliances.reduce((total, appliance) => {
-      const dailyConsumption = (appliance.power * appliance.usage) / 1000;
+      const dailyConsumption = ((appliance.power * appliance.usage * appliance.numberOfDevices) / 1000);
       return total + dailyConsumption;
     }, 0);
   };
@@ -93,6 +93,12 @@ const ApplianceManagement = () => {
           value={newAppliance.usage}
           onChange={(e) => setNewAppliance({ ...newAppliance, usage: e.target.value })}
         />
+        <input
+          type="number"
+          placeholder="Number of Devices"
+          value={newAppliance.numberOfDevices}
+          onChange={(e) => setNewAppliance({ ...newAppliance, numberOfDevices: e.target.value })}
+        />
         <button type="submit">
           {editingIndex !== null ? "Update Appliance" : "Add Appliance"}
         </button>
@@ -102,7 +108,7 @@ const ApplianceManagement = () => {
       <ul className="appliance-list">
         {appliances.map((appliance, index) => (
           <li key={index}>
-            {appliance.name} - {appliance.power}W - {appliance.usage}hrs/day
+            {appliance.name} - {appliance.power}W - {appliance.usage}hrs/day - {appliance.numberOfDevices} device(s)
             <div>
               <button className="edit" onClick={() => editAppliance(index)}>Edit</button>
               <button onClick={() => deleteAppliance(index)}>Delete</button>

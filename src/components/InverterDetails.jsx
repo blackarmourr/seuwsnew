@@ -7,6 +7,7 @@ const InverterDetails = () => {
     const [devices, setDevices] = useState(JSON.parse(localStorage.getItem("devices")) || []); // List of connected devices
     const [deviceName, setDeviceName] = useState(""); // Name of the new device
     const [devicePower, setDevicePower] = useState(""); // Power rating of the new device
+    const [deviceCount, setDeviceCount] = useState(1); // Number of devices of the same type
     const [backupTime, setBackupTime] = useState(null); // Calculated backup time
 
     // Save battery capacity and inverter capacity to localStorage
@@ -18,11 +19,15 @@ const InverterDetails = () => {
 
     // Add a new device to the list
     const addDevice = () => {
-        if (deviceName && devicePower) {
-            const newDevice = { name: deviceName, power: parseFloat(devicePower) };
-            setDevices([...devices, newDevice]);
+        if (deviceName && devicePower && deviceCount > 0) {
+            const newDevices = [];
+            for (let i = 0; i < deviceCount; i++) {
+                newDevices.push({ name: deviceName, power: parseFloat(devicePower) });
+            }
+            setDevices([...devices, ...newDevices]);
             setDeviceName("");
             setDevicePower("");
+            setDeviceCount(1); // Reset device count
         }
     };
 
@@ -96,6 +101,16 @@ const InverterDetails = () => {
                         value={devicePower}
                         onChange={(e) => setDevicePower(e.target.value)}
                         placeholder="Enter device power"
+                    />
+                </label>
+                <label>
+                    Number of Devices:
+                    <input
+                        type="number"
+                        value={deviceCount}
+                        onChange={(e) => setDeviceCount(e.target.value)}
+                        min="1"
+                        placeholder="Enter number of devices"
                     />
                 </label>
                 <button onClick={addDevice}>Add Device</button>

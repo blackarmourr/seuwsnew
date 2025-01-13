@@ -7,6 +7,7 @@ import ApplianceManagement from "./components/ApplianceManagement";
 import InverterDetails from "./components/InverterDetails"; // Import the new InverterDetails component
 import Billing from "./components/Billing"; // Import the new Billing component
 import Report from "./components/Report"; // Import the new Report component
+import TipsPage from "./components/TipsPage"; // Import the new TipsPage component
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/inverter-details" element={<InverterDetails />} /> {/* Existing route */}
         <Route path="/billing" element={<Billing />} /> {/* New route for Billing */}
         <Route path="/report" element={<Report />} /> {/* New route for Report */}
+        <Route path="/tips" element={<TipsPage />} /> {/* New route for TipsPage */}
       </Routes>
     </Router>
   );

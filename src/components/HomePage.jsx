@@ -1,6 +1,7 @@
-import React from "react"; 
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import './HomePage.css'; // Import the CSS for styling
+import EnergyTipsTicker from './EnergyTipsTicker';
+import './HomePage.css';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -14,13 +15,15 @@ const HomePage = () => {
         <div className="home-page-container">
             <h1>Smart Energy Usage Warning System</h1>
             
+            <EnergyTipsTicker />
+
             <div className="button-group">
                 <button onClick={() => navigate("/live-readings")}>Smart Meter Readings</button>
                 <button onClick={() => navigate("/smart-plug")}>Smart Plug</button>
                 <button onClick={() => navigate("/appliance-management")}>Manage Appliances</button>
                 <button onClick={() => navigate("/inverter-details")}>Inverter Details</button>
                 <button onClick={() => navigate("/billing")}>Billing</button>
-                <button onClick={() => navigate("/report")}>Energy Report</button> {/* New Report Button */}
+                <button onClick={() => navigate("/report")}>Energy Report</button>
             </div>
 
             <div className="energy-consumption">

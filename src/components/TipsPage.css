@@ -1,0 +1,76 @@
+/* Tips Page Container */
+.tips-page-container {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #00c6ff, #0072ff); /* Blue gradient */
+  text-align: center;
+  padding: 20px;
+}
+
+/* Title Style */
+.tips-page-container h1 {
+  font-size: 2.5rem;
+  color: #fff; /* White text */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+
+/* Live Tips Section - Ticker Effect */
+.tips-ticker-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Restrict width for better responsiveness */
+  background-color: rgba(255, 255, 255, 0.9); /* Light transparent background */
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.tips-ticker {
+  display: flex;
+  align-items: center;
+  animation: scroll 20s linear infinite; /* Slower scrolling animation */
+  white-space: nowrap;
+}
+
+.tips-ticker p {
+  margin: 0;
+  padding: 0 20px; /* Smaller spacing between tips */
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333; /* Darker text for readability */
+}
+
+/* Animation for scrolling */
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 600px) {
+  .tips-page-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .tips-ticker-container {
+    max-width: 100%;
+    padding: 8px 10px; /* Reduced padding for smaller screens */
+  }
+
+  .tips-ticker p {
+    font-size: 0.9rem;
+    padding: 0 10px; /* Smaller spacing between tips */
+  }
+}
