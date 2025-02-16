@@ -1,148 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* Custom Properties */
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --primary: #3b82f6;
+  --secondary: #10b981;
+  --accent: #8b5cf6;
+  --success: #06b6d4;
+  --warning: #f59e0b;
+  --text-primary: #f8fafc;
+  --card-bg: rgba(30, 41, 59, 0.7);
+}
+
+/* Animated Background */
 .home-page-container {
-  font-family: 'Arial', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(to bottom right, #00c6ff, #0072ff); /* Blue gradient */
-  text-align: center;
-  padding: 30px;
-  background-size: cover;
-  background-attachment: fixed;
+  font-family: 'Space Grotesk', sans-serif;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  color: var(--text-primary);
 }
 
+/* Animated background elements */
+.home-page-container::before,
+.home-page-container::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  animation: floatAround 20s infinite ease-in-out;
+}
+
+.home-page-container::before {
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  top: -300px;
+  right: -300px;
+  filter: blur(60px);
+  opacity: 0.15;
+  animation-delay: -5s;
+}
+
+.home-page-container::after {
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  bottom: -300px;
+  left: -300px;
+  filter: blur(60px);
+  opacity: 0.15;
+  animation-delay: -10s;
+}
+
+@keyframes floatAround {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(50px, 50px) scale(1.1);
+  }
+  50% {
+    transform: translate(-30px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(20px, -50px) scale(1.05);
+  }
+}
+
+/* Glowing Title */
 .home-page-container h1 {
-  font-size: 2.5rem;
-  color: #fff; /* White text */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin-bottom: 10px;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s ease-in-out infinite alternate;
 }
 
-/* New styles for the ticker component */
+@keyframes titleGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 40px rgba(139, 92, 246, 0.8);
+  }
+}
+
+/* Energy Tips Ticker with Neon Effect */
 .energy-tips-ticker {
-  background: rgba(0, 114, 255, 0.3); /* Semi-transparent blue */
-  backdrop-filter: blur(8px);
-  padding: 1px 10px;
-  border-radius: 15px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  width: 90%;
-  margin-bottom: 25px;
-  transition: transform 0.3s ease;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+  animation: cardPulse 3s infinite ease-in-out;
 }
 
-.energy-tips-ticker p {
-  color: #ffffff !important; /* Force white color */
-  font-size: 1.1rem;
-  line-height: 1.5;
-  margin: 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Optional: adds better readability */
+.energy-tips-ticker::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 3s infinite;
 }
 
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes cardPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+  }
+}
 
 .ticker-container {
-  overflow: hidden;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.energy-tips-ticker p {
+  color: var(--text-primary) !important;
+  font-size: 1.2rem;
+  text-align: center;
+  animation: tickerFade 8s infinite;
+}
+
+@keyframes tickerFade {
+  0%, 100% { opacity: 0; transform: translateY(20px); }
+  10%, 90% { opacity: 1; transform: translateY(0); }
+}
+
+/* Futuristic Buttons */
 .button-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 15px;
+  display: grid;
+  gap: 1.5rem;
+  max-width: 500px;
+  margin: 2rem auto;
 }
 
 .home-page-container button {
-  background-color: #4CAF50; /* Green */
-  color: white;
-  padding: 14px 25px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 5px;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 15px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+}
+
+.home-page-container button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .home-page-container button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
 }
 
-.home-page-container button:active {
-  background-color: #388e3c;
+.home-page-container button:hover::before {
+  opacity: 0.1;
 }
 
+/* Energy Consumption Card with 3D Effect */
 .energy-consumption {
-  margin-bottom: 15px;
-  background: linear-gradient(145deg, #95ffd8, #b2e6c4); /* Subtle card gradient */
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  width: 100%;
-  text-align: left;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 2rem;
+  margin: 2rem 0;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+}
+
+.energy-consumption:hover {
+  transform: rotateX(5deg) rotateY(5deg);
 }
 
 .energy-consumption h2 {
   font-size: 2rem;
-  color: #333;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.energy-consumption h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 3px;
 }
 
 .energy-consumption p {
+  color: var(--text-primary);
   font-size: 1.2rem;
-  color: #555;
-  margin: 10px 0;
+  line-height: 1.8;
+  margin: 1rem 0;
+  padding: 1.4rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.energy-consumption p:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(10px);
 }
 
 .energy-consumption strong {
-  font-weight: bold;
-  color: #0072ff; /* Blue text */
+  color: var(--success);
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
 }
 
-/* Responsive styles for smaller screens */
-@media (max-width: 600px) {
+/* Loading Animation */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: loadingShimmer 1.5s infinite;
+}
+
+@keyframes loadingShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-gradient);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--primary), var(--accent));
+  border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-page-container {
+    padding: 1rem;
+  }
+
   .home-page-container h1 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-  }
-
-  .home-page-container button {
-    padding: 12px 20px;
-    font-size: 1rem;
-    width: 250px;
-  }
-
-  .energy-consumption h2 {
-    font-size: 1.5rem;
-  }
-
-  .energy-consumption p {
-    font-size: 1rem;
+    font-size: 2.2rem;
   }
 
   .energy-consumption {
-    margin-top: 20px;
-    padding: 15px;
+    padding: 1.5rem;
   }
 
-  .energy-tips-ticker {
-    padding: 12px 20px;
+  .energy-consumption h2 {
+    font-size: 1.8rem;
   }
 
-  .energy-tips-ticker p {
-    font-size: 1rem;
-  }
-
-  .ticker-container {
-    height: 50px;
+  .button-group {
+    gap: 1rem;
   }
 }

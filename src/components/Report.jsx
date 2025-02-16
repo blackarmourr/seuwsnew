@@ -6,6 +6,7 @@ const Report = () => {
   const [dailyConsumption, setDailyConsumption] = useState(0);
   const [monthlyConsumption, setMonthlyConsumption] = useState(0);
   const [cost, setCost] = useState(0);
+  const [dailyCost, setDailyCost] = useState(0); // New state for daily bill
   const [faults, setFaults] = useState([]);
   const [usageStatus, setUsageStatus] = useState("");
   const [overUsage, setOverUsage] = useState("");
@@ -22,6 +23,7 @@ const Report = () => {
 
     // Calculate the cost based on consumption (using KSEB rate structure)
     const calculatedCost = calculateCost(monthlyConsumption);
+    const calculatedDailyCost = calculateCost(dailyConsumption); // Calculate daily cost
     const faults = checkForFaults(dailyConsumption);
 
     // Check for over usage
@@ -31,6 +33,7 @@ const Report = () => {
     setDailyConsumption(dailyConsumption);
     setMonthlyConsumption(monthlyConsumption);
     setCost(calculatedCost);
+    setDailyCost(calculatedDailyCost); // Set the daily cost
     setFaults(faults);
     setUsageStatus(usageStatus);
     setOverUsage(overUsageMessage);
@@ -107,7 +110,8 @@ const Report = () => {
 
         <div className="cost-section">
           <h3>Calculated Bill</h3>
-          <p><strong>Total Cost:</strong> ₹ {cost}</p>
+          <p><strong>Daily Cost:</strong> ₹ {dailyCost}</p> {/* Displaying daily cost */}
+          <p><strong>Total Monthly Cost:</strong> ₹ {cost}</p> {/* Displaying monthly cost */}
         </div>
 
         <div className="usage-status">

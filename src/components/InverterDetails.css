@@ -1,24 +1,44 @@
+/* Custom Properties */
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --primary: #3b82f6;
+  --secondary: #10b981;
+  --accent: #8b5cf6;
+  --success: #06b6d4;
+  --warning: #f59e0b;
+  --text-primary: #f8fafc;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --button-bg: #1abc9c;
+  --button-hover-bg: #16a085;
+  --device-item-bg: rgba(255, 255, 255, 0.1);
+  --device-text: #bdc3c7;
+  --backup-text: #f1c40f;
+}
+
+/* Inverter Details Container */
 .inverter-details-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding: 45px;
-  background: linear-gradient(135deg, #2c3e50, #3498db);
+  background: var(--bg-gradient);
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text-primary);
   width: 100%;
   box-sizing: border-box;
 }
 
+/* Title */
 .inverter-details-container h1 {
   font-size: clamp(1.5rem, 5vw, 2rem);
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 15px;
   text-align: center;
 }
 
+/* Labels */
 label {
   font-size: clamp(0.875rem, 3vw, 1rem);
   margin-bottom: 8px;
@@ -28,6 +48,7 @@ label {
   max-width: 100%;
 }
 
+/* Input Fields */
 input {
   width: 100%;
   padding: clamp(6px, 2vw, 8px);
@@ -38,6 +59,7 @@ input {
   box-sizing: border-box;
 }
 
+/* Device Input */
 .device-input {
   display: flex;
   flex-direction: column;
@@ -48,9 +70,10 @@ input {
   max-width: 90%;
 }
 
+/* Buttons */
 button {
   padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 20px);
-  background-color: #1abc9c;
+  background-color: var(--button-bg);
   border: none;
   border-radius: 5px;
   color: white;
@@ -61,9 +84,10 @@ button {
 }
 
 button:hover {
-  background-color: #16a085;
+  background-color: var(--button-hover-bg);
 }
 
+/* Device List */
 .devices-list {
   margin-top: 20px;
   text-align: center;
@@ -71,8 +95,9 @@ button:hover {
   max-width: 600px;
 }
 
+/* Device Item */
 .device-item {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--device-item-bg);
   padding: clamp(8px, 2vw, 15px);
   border-radius: 5px;
   margin-bottom: 10px;
@@ -92,17 +117,20 @@ button:hover {
   font-size: 0.9rem;
 }
 
+/* Text in Device List */
 .devices-list p {
   margin: 3px 0;
   font-size: clamp(0.875rem, 3vw, 1rem);
-  color: #bdc3c7;
+  color: var(--device-text);
 }
 
+/* Calculate Button */
 .calculate-button {
   margin-top: 20px;
   max-width: 90%;
 }
 
+/* Backup Time Section */
 .backup-time {
   margin-top: 20px;
   text-align: center;
@@ -111,78 +139,78 @@ button:hover {
 
 .backup-time h2 {
   font-size: clamp(1.1rem, 4vw, 1.3rem);
-  color: #f1c40f;
+  color: var(--backup-text);
   margin-bottom: 10px;
 }
 
 .backup-time p {
   font-size: clamp(1rem, 3.5vw, 1.1rem);
-  color: #ecf0f1;
+  color: var(--text-primary);
 }
 
 /* Small devices (phones) */
 @media screen and (max-width: 480px) {
   .device-item {
-      padding: 10px;
+    padding: 10px;
   }
-  
+
   .device-item button {
-      width: 100%;
-      margin: 3px 0;
+    width: 100%;
+    margin: 3px 0;
   }
 }
 
 /* Medium devices (tablets) */
 @media screen and (min-width: 481px) and (max-width: 768px) {
   .device-input {
-      max-width: 80%;
+    max-width: 80%;
   }
-  
+
   .device-item {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
   }
-  
+
   .device-item button {
-      width: auto;
+    width: auto;
   }
 }
 
 /* Large devices (desktops) */
 @media screen and (min-width: 769px) {
   .device-input {
-      flex-direction: row;
-      max-width: 800px;
-      gap: 20px;
-      align-items: flex-end;
+    flex-direction: row;
+    max-width: 800px;
+    gap: 20px;
+    align-items: flex-end;
   }
-  
+
   .device-input label {
-      flex: 1;
-      margin-bottom: 0;
+    flex: 1;
+    margin-bottom: 0;
   }
-  
+
   .device-input button {
-      width: auto;
-      white-space: nowrap;
-      margin-bottom: 8px;
+    width: auto;
+    white-space: nowrap;
+    margin-bottom: 8px;
   }
-  
+
   .device-item {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
   }
-  
+
   .device-item button {
-      width: auto;
-      min-width: 80px;
+    width: auto;
+    min-width: 80px;
   }
-  
+
   .calculate-button {
-      max-width: 300px;
+    max-width: 300px;
   }
 }

@@ -13,7 +13,7 @@ const HomePage = () => {
 
     return (
         <div className="home-page-container">
-            <h1>Smart Energy Usage Warning System</h1>
+            <h1>SEUWS</h1>
             
             <EnergyTipsTicker />
 

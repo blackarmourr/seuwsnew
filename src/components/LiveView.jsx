@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { fetchReadings } from '../services/api';
+import React, { useState, useEffect, useRef } from 'react';
+import { fetchReadings, resetEnergy } from '../services/api';
 import './LiveView.css';
 
 const LiveView = () => {
@@ -10,34 +10,59 @@ const LiveView = () => {
         energy: 0,
     });
     const [error, setError] = useState(null);
-    const [warning, setWarning] = useState(null); // State for the warning message
+    const [warning, setWarning] = useState(null);
+    const [resetting, setResetting] = useState(false);
+    const prevReadings = useRef(readings);
+
+    const fetchWithRetry = async (retries = 5, delay = 1000) => {
+        try {
+            return await fetchReadings();
+        } catch (err) {
+            if (retries === 0) throw err;
+            await new Promise(resolve => setTimeout(resolve, delay));
+            return fetchWithRetry(retries - 1, delay * 2);
+        }
+    };
 
     useEffect(() => {
         const getReadings = async () => {
             try {
-                const data = await fetchReadings();
-                setReadings(data);
-                setError(null);
+                const data = await fetchWithRetry();
+                if (JSON.stringify(data) !== JSON.stringify(prevReadings.current)) {
+                    setReadings(data);
+                    prevReadings.current = data;
+                    setError(null);
+                }
             } catch (err) {
                 setError('Failed to fetch readings. Please check the ESP32 connection.');
             }
         };
 
-        // Fetch readings every second
-        const interval = setInterval(getReadings, 1000);
+        const interval = setInterval(getReadings, 2500);
         return () => clearInterval(interval);
     }, []);
 
-    // Compare live reading with total daily consumption
     useEffect(() => {
         const totalDailyConsumption = localStorage.getItem("totalDailyConsumption") || 0;
-
         if (readings.energy > totalDailyConsumption) {
             setWarning("Warning: Smart meter reading exceeds the total daily energy usage!");
         } else {
-            setWarning(null); // Reset the warning if condition is normal
+            setWarning(null);
         }
     }, [readings]);
+
+    // Function to reset energy reading
+    const handleResetEnergy = async () => {
+        setResetting(true);
+        try {
+            await resetEnergy();
+            setReadings(prev => ({ ...prev, energy: 0 })); // Reset UI
+            setWarning(null);
+        } catch (err) {
+            setError("Reseting Energy Reading.");
+        }
+        setResetting(false);
+    };
 
     return (
         <div className="live-view-container">
@@ -53,12 +78,12 @@ const LiveView = () => {
                 </div>
             )}
 
-            {/* Display the warning if the reading exceeds the total daily consumption */}
-            {warning && (
-                <div className="warning-message">
-                    <strong>{warning}</strong>
-                </div>
-            )}
+            {warning && <div className="warning-message"><strong>{warning}</strong></div>}
+
+            {/* Reset Energy Button */}
+            <button onClick={handleResetEnergy} disabled={resetting} className="reset-button">
+                {resetting ? "Resetting..." : "Reset Energy"}
+            </button>
         </div>
     );
 };

@@ -5,14 +5,13 @@ const EnergyTipsTicker = () => {
   const [isAnimating, setIsAnimating] = useState(true);
 
   const tips = [
-    "💡 Turn off lights when leaving a room to save up to 10% on electricity",
-    "🌡️ Setting your thermostat 1°C lower can reduce energy bills by up to 8%",
-    "🔌 Unplug devices on standby to save up to £35 yearly on energy bills",
+    "💡 Turn off lights when leaving a room to save up electricity",
+    "🌡️ Setting your thermostat 1°C lower can reduce energy bills",
+    "🔌 Unplug devices on standby to save on energy bills",
     "⚡ Use LED bulbs to reduce lighting energy consumption by 75%",
-    "🌞 Use natural light when possible to reduce lighting costs",
+    "🌞 Use natural light when possible to save electricity",
     "🧺 Run full loads of laundry to maximize energy efficiency",
     "❄️ Keep your refrigerator at 3-4°C for optimal energy efficiency",
-    "🚿 Using a water-efficient showerhead can reduce water heating costs",
     "🖥️ Enable power-saving mode on all electronic devices",
     "🌡️ Regular HVAC maintenance can improve efficiency by 20%",
     "🧊 Defrost your freezer regularly to maintain efficiency",
@@ -23,8 +22,6 @@ const EnergyTipsTicker = () => {
     "🔧 Fix leaky faucets to prevent energy waste in water heating",
     "♨️ Use a microwave instead of oven for small meals",
     "🌱 Plant trees for natural cooling and energy savings",
-    "🎮 Use power strips to easily turn off multiple devices",
-    "🚪 Weather-strip doors and windows to prevent energy loss"
   ];
 
   useEffect(() => {

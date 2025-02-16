@@ -4,19 +4,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background: linear-gradient(135deg, #2c3e50, #3498db); /* Gradient from dark blue to light blue */
-  height: 100vh;
-  font-family: Arial, sans-serif;
-  color: white; /* Text color for contrast against the background */
+  padding: 50px;
+  background: var(--bg-gradient); /* Using gradient from your theme */
+  height: 130vh;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text-primary); /* Theme text color */
 }
 
 /* Heading style */
 .smart-plug-container h1 {
   font-size: 2.5rem;
-  color: #fff; /* White color for the heading */
   margin-bottom: 20px;
-  font-weight: bold;
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s ease-in-out infinite alternate; /* Title animation */
 }
 
 /* Error message styling */
@@ -29,11 +33,12 @@
   padding: 10px;
   background-color: rgba(255, 0, 0, 0.2);
   border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Form Styling */
 .device-details-form {
-  background-color: rgba(255, 255, 255, 0.2); /* Transparent white for slight contrast */
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 50px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -42,17 +47,18 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  backdrop-filter: blur(10px);
 }
 
-/* Form Label Styles */
+/* Form Labels */
 .device-details-form label {
   font-size: 1rem;
   margin-bottom: 10px;
-  color: white;
   font-weight: bold;
+  color: var(--text-primary);
 }
 
-/* Form Input Styles */
+/* Form Inputs */
 .device-details-form input {
   padding: 10px;
   font-size: 1rem;
@@ -61,92 +67,94 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
-  color: black; /* Set input text color to black */
+  color: black;
+  transition: all 0.3s ease;
 }
 
 .device-details-form input:focus {
-  border-color: #3498db;
+  border-color: var(--primary);
   outline: none;
-  background-color: #ffffff; /* Change background to white when focused */
+  background-color: #ffffff;
 }
 
-/* Submit Button */
+/* Form Button */
 .device-details-form button {
   padding: 10px 20px;
-  background-color: #1abc9c; /* Teal color for the button */
+  background-color: var(--secondary);
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .device-details-form button:hover {
-  background-color: #16a085; /* Darker teal for hover effect */
+  background-color: var(--success);
 }
 
 /* Calculated Current Display */
 .calculated-current {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
   text-align: center;
   font-size: 1rem;
-  color: #2c3e50;
+  color: var(--text-primary);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Readings card styling */
+/* Readings Card */
 .readings-card {
-  background-color: #ffffff;
+  background-color: #000000;
   padding: 25px;
-  border-radius: 12px; /* Slightly more rounded for modern feel */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Stronger shadow for better depth */
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   max-width: 250px;
   width: 100%;
   text-align: center;
   margin-top: 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
 }
 
-/* Individual reading styling */
+/* Readings Text */
 .readings-card p {
   font-size: 1.3rem;
   margin: 12px 0;
-  color: #2c3e50; /* Darker text for better readability */
+  color: var(--text-primary);
 }
 
-/* Strong text for labels */
 .readings-card strong {
   font-weight: bold;
-  color: #1abc9c; /* Soft teal for labels to stand out */
+  color: var(--primary);
 }
 
-/* Loading message style */
+/* Loading Message */
 .loading-message {
   font-size: 1.2rem;
-  color: #f39c12;
+  color: var(--warning);
   font-weight: bold;
   text-align: center;
 }
 
-/* Fault Message */
+/* Fault and Success Messages */
 .fault-message {
   color: #e74c3c;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   font-weight: bold;
   margin-top: 20px;
   text-align: center;
   padding: 10px;
-  background-color: rgba(255, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Success Message */
 .success-message {
   color: #2ecc71;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   font-weight: bold;
   margin-top: 20px;
   text-align: center;
@@ -156,7 +164,43 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive design for smaller screens */
+/* Relay Control Buttons */
+.relay-controls {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.relay-controls button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Turn ON/OFF Button */
+.relay-controls button:first-child {
+  background-color: var(--warning);
+  color: white;
+}
+
+.relay-controls button:first-child:hover {
+  background-color: var(--primary);
+}
+
+/* Reset Energy Button */
+.relay-controls button:last-child {
+  background-color: var(--danger);
+  color: white;
+}
+
+.relay-controls button:last-child:hover {
+  background-color: #e74c3c;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .smart-plug-container h1 {
     font-size: 2rem;
@@ -167,14 +211,20 @@
   }
 
   .device-details-form {
-    width: 100%; /* Make form fit smaller screens */
+    width: 100%;
   }
 
   .device-details-form input {
-    font-size: 0.9rem; /* Adjust font size for smaller screens */
+    font-size: 0.9rem;
   }
 
   .device-details-form button {
-    font-size: 0.9rem; /* Adjust button size */
+    font-size: 0.9rem;
+  }
+
+  .relay-controls {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
   }
 }

@@ -1,72 +1,151 @@
 /* Container for the live view */
 .live-view-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px;
-    background: linear-gradient(135deg, #e0f7fa, #80deea);
-    height: 100vh;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Heading style */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  background: var(--bg-gradient);
+  height: 85vh;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text-primary);
+}
+
+/* Heading style */
+.live-view-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+}
+
+/* Error message styling */
+.error-message {
+  color: var(--warning);
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  animation: pulseError 1.5s infinite alternate;
+}
+
+@keyframes pulseError {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Readings card style */
+.readings-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: perspective(1000px) rotateX(3deg) rotateY(3deg);
+  transition: transform 0.3s ease;
+}
+
+.readings-card:hover {
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+}
+
+/* Individual reading styling */
+.readings-card p {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin: 10px 0;
+}
+
+/* Strong text for labels */
+.readings-card strong {
+  font-weight: bold;
+  color: var(--success);
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+}
+
+/* Warning message styling */
+.warning-message {
+  padding: 15px;
+  background: var(--warning);
+  color: white;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(255, 153, 0, 0.8);
+  animation: blink 1.5s infinite alternate;
+}
+
+/* Blinking effect */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Reset Energy Button */
+.reset-button {
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+  margin-top: 20px;
+}
+
+/* Hover effect */
+.reset-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(139, 92, 246, 0.5);
+}
+
+/* Click effect */
+.reset-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 10px rgba(139, 92, 246, 0.4);
+}
+
+/* Disabled state */
+.reset-button:disabled {
+  background: gray;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
   .live-view-container h2 {
-    font-size: 2rem;
-    color: #004d40;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
   }
-  
-  /* Error message styling */
-  .error-message {
-    color: #e74c3c;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  /* Readings card style */
-  .readings-card {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  /* Individual reading styling */
+
   .readings-card p {
-    font-size: 1.2rem;
-    color: black; /* Updated to black */
-    margin: 10px 0;
+    font-size: 1rem;
   }
-  
-  /* Strong text for labels */
-  .readings-card strong {
-    font-weight: bold;
-    color: #00796b;
-  }
-  
-  /* Warning message styling */
+
   .warning-message {
-    padding: 10px;
-    background-color: #ffcc00;
-    color: black;
-    border-radius: 5px;
-    margin-top: 20px;
-    font-weight: bold;
-    text-align: center;
+    font-size: 0.9rem;
+    padding: 12px;
   }
-  
-  /* Responsive design for smaller screens */
-  @media (max-width: 768px) {
-    .live-view-container h2 {
-        font-size: 1.8rem;
-    }
-  
-    .readings-card p {
-        font-size: 1rem;
-    }
+
+  .reset-button {
+    font-size: 1rem;
+    padding: 5px 25px;
   }
+}

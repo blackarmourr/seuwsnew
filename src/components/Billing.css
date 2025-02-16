@@ -5,47 +5,60 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: linear-gradient(135deg, #f0f0f0, #dfe6e9);
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: #2c3e50;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text-primary);
+  position: relative;
 }
 
 /* Heading style */
 .billing-container h1 {
-  font-size: 2rem;
-  color: #16a085;
+  font-size: 2.2rem;
+  color: var(--primary);
   margin-bottom: 20px;
   text-align: center;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s ease-in-out infinite alternate;
 }
 
 /* Billing details container */
 .billing-details {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   max-width: 400px;
   width: 100%;
   text-align: center;
+  transition: all 0.3s ease;
+}
+
+.billing-details:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
 }
 
 /* Billing information text */
 .billing-details p {
-  font-size: 1.2rem;
-  color: #2c3e50;
+  font-size: 1.1rem;
+  color: var(--text-primary);
   margin: 10px 0;
 }
 
 /* Strong text for labels */
 .billing-details strong {
   font-weight: bold;
-  color: #3498db;
+  color: var(--primary);
 }
 
 /* Bill amount styling */
 .billing-details p:last-child {
-  font-size: 1.5rem;
-  color: #e74c3c;
+  font-size: 1.1rem;
+  color: var(--warning);
   font-weight: bold;
 }
