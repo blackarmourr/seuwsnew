@@ -19,7 +19,7 @@ const SmartPlugView = () => {
     // Function to fetch plug readings
     const fetchPlugReadings = async () => {
         try {
-            const response = await fetch("http://192.168.124.201/plug-readings", { cache: "no-store" });
+            const response = await fetch("https://192.168.124.201/plug-readings", { cache: "no-store" });
             if (!response.ok) {
                 throw new Error("Failed to fetch plug readings");
             }
@@ -34,7 +34,7 @@ const SmartPlugView = () => {
     const toggleRelay = async () => {
         try {
             const state = isRelayOn ? "off" : "on"; // Toggle state
-            const response = await fetch(`http://192.168.124.201/relay-${state}`, {
+            const response = await fetch(`https://192.168.124.201/relay-${state}`, {
                 method: "GET",
             });
             if (!response.ok) throw new Error(`Failed to turn relay ${state}`);
@@ -47,7 +47,7 @@ const SmartPlugView = () => {
     // Function to reset energy counter
     const resetEnergy = async () => {
         try {
-            const response = await fetch("http://192.168.124.201/reset-energy", { cache: "no-store" });
+            const response = await fetch("https://192.168.124.201/reset-energy", { cache: "no-store" });
             if (!response.ok) throw new Error("Failed to reset energy");
             alert("Energy counter reset successfully!");
 
