@@ -1,33 +1,27 @@
-// Import the functions you need from the SDKs you need
+// Import Firebase SDK functions
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore"; // Add Firestore
-import { getDatabase } from "firebase/database"; // Add Realtime Database
-import { getAuth } from "firebase/auth"; // Add Authentication
+import { getFirestore } from "firebase/firestore"; // Firestore for structured data
+import { getDatabase } from "firebase/database"; // Realtime Database
+import { getAuth } from "firebase/auth"; // Authentication
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCC7knmb6AG_ueb3TMqShEsNz7Qde3EQ68",
   authDomain: "seuwslatest.firebaseapp.com",
-  databaseURL: "https://seuwslatest-default-rtdb.asia-southeast1.firebasedatabase.app",
+  databaseURL: "https://seuwslatest-default-rtdb.asia-southeast1.firebasedatabase.app", // ✅ Ensure HTTPS is used
   projectId: "seuwslatest",
-  storageBucket: "seuwslatest.firebasestorage.app",
+  storageBucket: "seuwslatest.appspot.com", // ✅ Fixed storageBucket typo
   messagingSenderId: "389592350820",
   appId: "1:389592350820:web:a9eb9925b98cc920b31f71"
 };
 
-// Initialize Firebase
+// ✅ Initialize Firebase App
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
-// Initialize Firestore (for structured data)
-const db = getFirestore(app);
+// ✅ Initialize Firebase Services
+const firestoreDb = getFirestore(app); // Firestore
+const realtimeDb = getDatabase(app); // Realtime Database
+const auth = getAuth(app); // Authentication
 
-// Initialize Realtime Database (for real-time updates)
-const realtimeDb = getDatabase(app);
-
-// Initialize Authentication
-const auth = getAuth(app);
-
-// Export the services you need
-export { db, realtimeDb, auth };
+// ✅ Export Firebase Instances
+export { app, firestoreDb, realtimeDb, auth };
